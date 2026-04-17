@@ -3,7 +3,6 @@ import logging
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
-
 logger = logging.getLogger(__name__)
 
 # ==========================================
