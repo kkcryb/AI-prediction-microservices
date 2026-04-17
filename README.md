@@ -1,8 +1,11 @@
 # AI-prediction-microservices
 
+📁 项目目录结构 (AI 算法与预测)
+本项目基于 FastAPI 与 PyTorch 构建，采用模型训练与微服务推理彻底解耦的设计。完整的项目目录结构如下：
+```text
 AI_Prediction_Microservice/
 │
-├── app/                                 # FastAPI 微服务核心代码目录 [cite: 39]
+├── app/                                 # FastAPI 微服务核心代码目录
 │   ├── __init__.py
 │   ├── main.py                          # FastAPI 应用入口文件，挂载路由和启动事件
 │   ├── core/                            # 核心配置模块
@@ -21,12 +24,12 @@ AI_Prediction_Microservice/
 │   ├── services/                        # 业务逻辑层 (连接API与底层模型)
 │   │   ├── __init__.py
 │   │   ├── inference_service.py         # 封装 GCN-LSTM 前向推理逻辑 (1小时级调用)
-│   │   ├── elasticity_service.py        # 实现微小扰动法，计算电价弹性系数矩阵 
-│   │   └── data_client.py               # HTTP/InfluxDB 客户端: 向数据中台请求标准化的历史时序数据 [cite: 126]
+│   │   ├── elasticity_service.py        # 实现微小扰动法，计算电价弹性系数矩阵
+│   │   └── data_client.py               # HTTP/InfluxDB 客户端: 向数据中台请求标准化的历史时序数据
 │   │
 │   ├── models/                          # 深度学习模型定义层 (PyTorch)
 │   │   ├── __init__.py
-│   │   ├── gcn_lstm.py                  # 定义融合了图卷积与LSTM网络结构的核心类 
+│   │   ├── gcn_lstm.py                  # 定义融合了图卷积与LSTM网络结构的核心类
 │   │   └── graph_builder.py             # 构建空间拓扑矩阵 (Station-to-Grid 邻接矩阵 A) 
 │   │
 │   └── schemas/                         # Pydantic 数据验证模型 (输入输出格式定义)
@@ -38,11 +41,11 @@ AI_Prediction_Microservice/
 │   ├── __init__.py
 │   ├── dataset.py                       # PyTorch Dataset 构建，处理从中台拉取的批次数据
 │   ├── train_gcn_lstm.py                # 模型训练主脚本 (包含前向传播、损失计算、反向传播)
-│   ├── evaluate.py                      # 模型评估脚本 (计算 WMAPE, RMSE, MAE 等指标) [cite: 11]
+│   ├── evaluate.py                      # 模型评估脚本 (计算 WMAPE, RMSE, MAE 等指标)
 │   └── hyperparam_tuning.py             # 超参数搜索脚本
 │
 ├── checkpoints/                         # 模型权重存储目录
-│   ├── best_gcn_lstm.pth                # 训练产出的最优模型权重文件，供 app/ 加载 
+│   ├── best_gcn_lstm.pth                # 训练产出的最优模型权重文件，供 app/ 加载
 │   └── scaler.pkl                       # 数据归一化/反归一化相关的参数文件
 │
 ├── tests/                               # 单元测试与集成测试
@@ -53,6 +56,6 @@ AI_Prediction_Microservice/
 ├── docs/                                # 文档目录
 │   └── api_reference.md                 # 供“运筹优化组”调用的 API 接口说明文档
 │
-├── Dockerfile                           # 容器化构建文件，打包环境与代码 
-├── requirements.txt                     # Python 依赖清单 (PyTorch, FastAPI, Uvicorn, Pandas, etc.)
+├── Dockerfile                           # 容器化构建文件，打包环境与代码
+├── requirements.txt                     # Python 依赖清单 (PyTorch, FastAPI, Pandas, etc.)
 └── .env.example                         # 环境变量示例文件
