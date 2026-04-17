@@ -2,6 +2,7 @@
 import os
 from pydantic_settings import BaseSettings
 
+
 class Settings(BaseSettings):
     # --- 基础配置 ---
     PROJECT_NAME: str = "V2G AI Prediction Microservice"
