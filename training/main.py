@@ -1,3 +1,6 @@
+#cd "D:\DCS\ai_prediction\training"
+#python main.py --model gcnlstm --seq_len 24 --pred_len 24 --fold 1 --epoch 300 --feat volume
+
 import utils
 import torch
 from parse import parse_args

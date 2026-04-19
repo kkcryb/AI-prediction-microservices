@@ -59,7 +59,7 @@ def read_data(args):
     # Load datasets
     inf = pd.read_csv('data/inf.csv', header=0, index_col=None)
     occ = pd.read_csv('data/occupancy.csv', header=0, index_col=0)
-    duration = pd.read_csv('data/duration.csv', header=0, index_col=0)
+    #duration = pd.read_csv('data/duration.csv', header=0, index_col=0)
     volume = pd.read_csv('data/volume.csv', header=0, index_col=0)
     e_price = pd.read_csv('data/e_price.csv', index_col=0, header=0).values
     s_price = pd.read_csv('data/s_price.csv', index_col=0, header=0).values
