@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     # 默认指向 checkpoints 目录，Docker 部署时可通过环境变量覆盖
     MODEL_WEIGHT_PATH: str = os.getenv("MODEL_WEIGHT_PATH", "checkpoints/best_gcn_lstm.pth")
     SCALER_PATH: str = os.getenv("SCALER_PATH", "checkpoints/scaler.pkl")
+    ADJ_MATRIX_PATH: str = os.getenv("ADJ_MATRIX_PATH", "training/data/adj.csv")
 
     # --- 接口与数据中台对接配置 ---
     # 根据项目要求，AI组需要从后端数据中台拉取标准历史时序数据
@@ -20,6 +21,15 @@ class Settings(BaseSettings):
 
     # --- 算法超参数配置 (针对微小扰动法) ---
     PERTURBATION_DELTA: float = 0.05  # 微小扰动法中电价变动的比例 (例如 5%)
+    # GCN-LSTM 超参数 (需要与训练时保持一致)
+    SEQ_LEN: int = 24  # 输入的时间步长 (过去24小时)
+    NUM_FEAT: int = 4  # 每个节点的特征维度 (请根据实际情况修改，比如负荷、电价、天气等)
+    NUM_NODES: int = 307  # 区域节点数 (如深圳UrbanEV数据集的节点数)
+    GCN_OUT: int = 32
+    GCN_LAYERS: int = 1
+    LSTM_HIDDEN_DIM: int = 256
+    LSTM_LAYERS: int = 2
+    HIDDEN_DIM: int = 32
 
     class Config:
         env_file = ".env"
